@@ -1,0 +1,9 @@
+website: 
+- description: eBay-like e-commerce auction site
+
+users:
+- permissions:
+    - post auction listings
+    - place bids on listings
+    - comment on listings
+    - add listings to "watchlist"
