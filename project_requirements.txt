@@ -13,3 +13,6 @@ models:
 - bids
 - Comment 
 - Category
+
+superuser:
+- andy:1234567
