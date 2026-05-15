@@ -7,3 +7,9 @@ users:
     - place bids on listings
     - comment on listings
     - add listings to "watchlist"
+
+models:
+- Listing
+- bids
+- Comment 
+- Category
