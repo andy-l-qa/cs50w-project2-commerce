@@ -8,7 +8,12 @@ from .models import User, Category, Listing
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    listings = Listing.objects.filter(active=True)
+    categories = Category.objects.all()
+    return render(request, "auctions/index.html", {
+        "listings": listings,
+        "categories": categories
+    })
 
 
 def create(request):
@@ -21,7 +26,7 @@ def create(request):
         title = request.POST["title"]
         description = request.POST["description"]
         image = request.FILES.get("image")
-        category = request.POST["category"]
+        category = Category.objects.get(name=request.POST["category"])
         price = request.POST["price"]
         seller = request.user
 
@@ -33,7 +38,10 @@ def create(request):
             price=float(price),
             seller=seller
         )
-        
+
+        listing.save()
+        return HttpResponseRedirect(reverse(index))
+
 
 def login_view(request):
     if request.method == "POST":
@@ -85,3 +93,23 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+
+def display_by_category(request):
+    categories = Category.objects.all()
+
+    if request.method == "POST":
+        selected_category = request.POST.get("category")
+
+        if selected_category:
+            listings = Listing.objects.filter(
+                active=True,
+                category=selected_category
+            )
+        else:
+            listings = Listing.objects.filter(active=True)
+
+    return render(request, "auctions/index.html", {
+        "listings": listings,
+        "categories": categories
+    })
