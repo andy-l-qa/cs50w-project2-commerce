@@ -10,7 +10,8 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
     path("create", views.create, name="create"),
-    path("display_by_category", views.display_by_category, name="display_by_category")
+    path("display_by_category", views.display_by_category, name="display_by_category"),
+    path("listing/<int:id>", views.listing, name="listing")
 ]
 
 if settings.DEBUG:

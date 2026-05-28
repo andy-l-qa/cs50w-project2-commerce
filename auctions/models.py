@@ -24,6 +24,7 @@ class Listing(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
     active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
+    watchlist = models.ManyToManyField(User, blank=True, related_name="favorites")
 
     def __str__(self):
         return f"{self.title} (listed by {self.seller} for {self.price})"

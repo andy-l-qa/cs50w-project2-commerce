@@ -16,3 +16,6 @@ models:
 
 superuser:
 - andy:1234567
+
+progress:
+- stopped at watchlist functionality creation n the Listing Page.

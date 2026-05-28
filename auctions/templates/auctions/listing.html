@@ -1,0 +1,49 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="row">
+            {% if user.is_authenticated %}
+                {% if in_watchlist %}
+                    <h1>Remove</h1>
+                {% else %}
+                    <h1>Add</h1>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        {% if listing.image %}
+            <img src="{{ listing.image.url }}"
+                 class="card-img-top"
+                 style="height: 400px; object-fit: contain;">
+        {% endif %}
+
+        <div class="card-body">
+
+            <h2 class="card-title">
+                {{ listing.title }}
+            </h2>
+
+            <p class="card-text">
+                {{ listing.description }}
+            </p>
+
+             <p class="card-text">
+                Sold by: {{ listing.seller }}
+            </p>
+
+            <h4 class="text-success">
+                ${{ listing.price }}
+            </h4>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

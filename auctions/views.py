@@ -113,3 +113,14 @@ def display_by_category(request):
         "listings": listings,
         "categories": categories
     })
+
+
+def listing(request, id):
+    listing = Listing.objects.get(pk=id)
+
+    in_watchlist = True
+
+    return render(request, "auctions/listing.html", {
+        "listing": listing,
+        "in_watchlist": in_watchlist
+    })
